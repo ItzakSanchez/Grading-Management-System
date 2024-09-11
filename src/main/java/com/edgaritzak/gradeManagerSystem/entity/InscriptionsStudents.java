@@ -23,5 +23,5 @@ public class InscriptionsStudents {
 	@JoinColumn(name="ID_STUDENT")
 	private Student student;
 	@Column(name="SCORE")
-	private int score;
+	private double score;
 }

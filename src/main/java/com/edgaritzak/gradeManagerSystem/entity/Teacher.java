@@ -7,6 +7,7 @@ import lombok.*;
 
 @Entity
 @Data
+@ToString(exclude = "group")
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="TBL_TEACHER")
@@ -22,5 +23,5 @@ public class Teacher{
 	 
 	//Relationships
 	@OneToMany(mappedBy = "teacher")
-    private List<Group> Group;
+    private List<Group> group;
 }

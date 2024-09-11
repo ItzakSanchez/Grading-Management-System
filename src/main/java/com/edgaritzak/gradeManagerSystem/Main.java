@@ -19,8 +19,10 @@ public class Main {
 	@Bean
 	public CommandLineRunner comandLineRunner(SystemUserServiceImpl systemUserServiceImpl, StudentServiceImpl studentServiceImpl){
 		return runner -> {
-			systemUserServiceImpl.findStudentsByGroup(1);
-			studentServiceImpl.findBySystemUserId(1);
+			systemUserServiceImpl.findAll().forEach(x-> System.out.println(x));
+			System.out.println("--------------");
+			systemUserServiceImpl.findStudentsByGroup(1).forEach(x-> System.out.println(x.toString()));
+			//System.out.println(studentServiceImpl.findBySystemUserId(1));
 		};
 	}
 }
