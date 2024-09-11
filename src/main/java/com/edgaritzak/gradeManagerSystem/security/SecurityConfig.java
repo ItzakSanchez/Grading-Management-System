@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
+import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,7 +34,15 @@ public class SecurityConfig {
     			.build())
     	.collect(Collectors.toList());
         
-        return new InMemoryUserDetailsManager(userList);
+    	UserDetails susan = User.builder()
+                .username("susan")
+                .password("{noop}test123")
+                .roles("STUDENT")
+                .build();
+    	
+    	//userList.forEach(x -> System.out.println(x));
+    	
+        return new InMemoryUserDetailsManager(susan);
     }
 
     
@@ -42,7 +52,7 @@ public class SecurityConfig {
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
                 .requestMatchers("/student/**").hasRole("STUDENT")
-                .requestMatchers("/student/hi").hasRole("STUDENT")
+                .requestMatchers("/student/").hasRole("STUDENT")
                 .requestMatchers("/teacher/**").hasRole("TEACHER")
                 .anyRequest().authenticated()
             )
@@ -56,6 +66,9 @@ public class SecurityConfig {
 //                    .permitAll()
 //            )
        ;
+        http.httpBasic(Customizer.withDefaults());
+        http.csrf(csrf -> csrf.disable());
+
         return http.build();
     }
 }
