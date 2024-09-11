@@ -7,6 +7,7 @@ import lombok.*;
 
 @Entity
 @Data
+@ToString(exclude = "inscriptionsStudents")
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="TBL_STUDENT")

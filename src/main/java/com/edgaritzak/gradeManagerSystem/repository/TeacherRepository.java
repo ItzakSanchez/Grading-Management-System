@@ -5,4 +5,5 @@ import com.edgaritzak.gradeManagerSystem.entity.Teacher;
 
 public interface TeacherRepository extends JpaRepository<Teacher, Integer>{
 
+	Teacher findBySystemUserId(int systemUserId);
 }

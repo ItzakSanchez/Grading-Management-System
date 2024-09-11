@@ -11,7 +11,7 @@ import com.edgaritzak.gradeManagerSystem.entity.SystemUser;
 
 public interface SystemUserRepository extends JpaRepository<SystemUser, Integer>{
 
-	//GET STUDENTS DATA FROM A PARTICULAR GROUP (ID)
+	//GET SYSTEM USER (STUDENTS) DATA FROM A PARTICULAR GROUP (ID)
 	@Query("SELECT SU FROM SystemUser as SU"
 	+" JOIN SU.student as S"
 	+" JOIN S.inscriptionsStudents as I"
@@ -19,19 +19,19 @@ public interface SystemUserRepository extends JpaRepository<SystemUser, Integer>
 	+" WHERE G.id = :groupId")
 	List<SystemUser> findStudentsByGroup(@Param("groupId")int groupId);
 		
-	//FIND TEACHER BY ID
+	//FIND SYSTEM USER (TEACHER) BY ID
 	@Query("SELECT SU FROM SystemUser as SU"
 	+" JOIN SU.teacher as T"
 	+" WHERE T.id = :teacharId")
 	Optional<SystemUser> findTeacherById(@Param("teacharId")int idTeacher);
 	
-	//FIND Student BY ID
+	//FIND SYSTEM USER (Student) BY ID
 	@Query("SELECT SU FROM SystemUser as SU"
 	+" JOIN SU.student as S"
 	+" WHERE S.id = :studentId")
 	Optional<SystemUser> findStudentById(@Param("studentId")int idStudent);
 		
-	//FIND SystemUser BY ID
+	//FIND SYSTEM USER BY ID
 	@Query("SELECT SU FROM SystemUser as SU"
 	+" WHERE SU.id = :systemUserId")
 	Optional<SystemUser> findUserById(@Param("systemUserId")int systemUserId);

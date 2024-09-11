@@ -37,4 +37,6 @@ public interface GroupRepository extends JpaRepository<Group,Integer>{
 	List<Group> findStudentsGroupsByTerm(@Param("studentId")int studentId,
 	@Param("semester")int semester,@Param("year")int year);
 	
+	
+	
 }
