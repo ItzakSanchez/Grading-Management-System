@@ -1,0 +1,49 @@
+-------------------------------------------------------------------------------
+Test set: SystemUserTest
+-------------------------------------------------------------------------------
+Tests run: 5, Failures: 5, Errors: 0, Skipped: 0, Time elapsed: 0.143 s <<< FAILURE! -- in SystemUserTest
+SystemUserTest.test_SystemUser_findUserById -- Time elapsed: 0.052 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Exception thrown during safeOperation: Cannot invoke "com.edgaritzak.gradeManagerSystem.service.SystemUserServiceImpl.findUserById(int)" because "this.systemUserImpl" is null
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at SystemUserTest.test_SystemUser_findUserById(SystemUserTest.java:42)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+SystemUserTest.test_SystemUser_findStudentsByGroup -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Exception thrown during safeOperation: Cannot invoke "com.edgaritzak.gradeManagerSystem.service.SystemUserServiceImpl.findStudentsByGroup(int)" because "this.systemUserImpl" is null
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at SystemUserTest.test_SystemUser_findStudentsByGroup(SystemUserTest.java:27)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+SystemUserTest.test_SystemUser_findStudentsWithScoreByGroup -- Time elapsed: 0.005 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Exception thrown during safeOperation: Cannot invoke "com.edgaritzak.gradeManagerSystem.service.SystemUserServiceImpl.findStudentsWithScoreByGroup(int)" because "this.systemUserImpl" is null
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at SystemUserTest.test_SystemUser_findStudentsWithScoreByGroup(SystemUserTest.java:47)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+SystemUserTest.test_SystemUser_findTeacherById -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Exception thrown during safeOperation: Cannot invoke "com.edgaritzak.gradeManagerSystem.service.SystemUserServiceImpl.findTeacherById(int)" because "this.systemUserImpl" is null
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at SystemUserTest.test_SystemUser_findTeacherById(SystemUserTest.java:32)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+
+SystemUserTest.test_SystemUser_findStudentById -- Time elapsed: 0.006 s <<< FAILURE!
+org.opentest4j.AssertionFailedError: Exception thrown during safeOperation: Cannot invoke "com.edgaritzak.gradeManagerSystem.service.SystemUserServiceImpl.findStudentById(int)" because "this.systemUserImpl" is null
+	at org.junit.jupiter.api.AssertionUtils.fail(AssertionUtils.java:38)
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:138)
+	at SystemUserTest.test_SystemUser_findStudentById(SystemUserTest.java:37)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+

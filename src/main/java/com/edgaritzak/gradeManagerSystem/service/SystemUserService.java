@@ -1,16 +1,18 @@
 package com.edgaritzak.gradeManagerSystem.service;
 
 import java.util.List;
-import java.util.Optional;
 
-import com.edgaritzak.gradeManagerSystem.entity.Student;
+import com.edgaritzak.gradeManagerSystem.dto.StudentWithScoreDTO;
 import com.edgaritzak.gradeManagerSystem.entity.SystemUser;
 
 public interface SystemUserService {
 
-	public List<SystemUser> findStudentsByGroup(int groupId);
-	public SystemUser findTeacherById(int teacherId);
-	public SystemUser findStudentById(int studentId);
-	public SystemUser findUserById(int userId);
+	List<SystemUser> findStudentsByGroup(int groupId);
+	SystemUser findTeacherById(int teacherId);
+	SystemUser findStudentById(int studentId);
+	SystemUser findUserById(int userId);
 	
+	List<StudentWithScoreDTO> findStudentsWithScoreByGroup(int groupId);
+	
+	List<SystemUser> findAll();
 }

@@ -6,9 +6,11 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Entity
 @Data
+@ToString(exclude = "group")
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name="TBL_COURSE")
@@ -19,11 +21,11 @@ public class Course {
 	@GeneratedValue(strategy= GenerationType.IDENTITY)
 	private int id;
 	@Column(name="COURSE_NAME")
-	private String courseName;
+	private String name;
 	@Column(name="COURSE_DESCRIPTION")
 	private String description;
 	
 	//Relationships
 	@OneToMany(mappedBy = "course")
-    private List<Group> Group;
+    private List<Group> group;
 }

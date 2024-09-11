@@ -11,11 +11,11 @@ import com.edgaritzak.gradeManagerSystem.entity.Group;
 public interface GroupRepository extends JpaRepository<Group,Integer>{
 	
 	//SELECT ALL TEACHERS GROUPS
-	@Query("Select G from Group AS G WHERE G.teacher = :teacherId")
-	List<Group> findTeachersGroups(@Param("teacherId")int idTeacher);
+	@Query("Select G from Group AS G WHERE G.teacher.id = :teacherId")
+	List<Group> findTeachersGroups(@Param("teacherId")int teacherId);
 	
 	//SELECT ALL TEACHERS GROUPS BY TERM
-	@Query("Select G from Group AS G WHERE G.teacher = :teacherId"
+	@Query("Select G from Group AS G WHERE G.teacher.id = :teacherId"
 	+" AND G.semester = :semester AND G.year = :year")
 	List<Group> findTeachersGroupsByTerm(@Param("teacherId")int idTeacher, 
 	@Param("semester")int semester,@Param("year")int year);
@@ -36,5 +36,7 @@ public interface GroupRepository extends JpaRepository<Group,Integer>{
 	+" AND G.semester = :semester AND G.year = :year")
 	List<Group> findStudentsGroupsByTerm(@Param("studentId")int studentId,
 	@Param("semester")int semester,@Param("year")int year);
+	
+	
 	
 }
