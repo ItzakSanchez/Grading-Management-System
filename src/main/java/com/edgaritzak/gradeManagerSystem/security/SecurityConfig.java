@@ -9,6 +9,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
@@ -24,7 +25,6 @@ public class SecurityConfig {
 	
     @Bean
     public InMemoryUserDetailsManager userDetailsManager() {
-
     	List<UserDetails> userList = systemUserServiceImpl.findAll()
 		.stream()
     	.map(x -> User.builder()
@@ -33,42 +33,44 @@ public class SecurityConfig {
     			.roles(x.getRole())
     			.build())
     	.collect(Collectors.toList());
-        
-    	UserDetails susan = User.builder()
-                .username("susan")
-                .password("{noop}test123")
-                .roles("STUDENT")
-                .build();
-    	
-    	//userList.forEach(x -> System.out.println(x));
-    	
-        return new InMemoryUserDetailsManager(susan);
+            	
+        return new InMemoryUserDetailsManager(userList);
     }
-
     
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
             .authorizeHttpRequests(authorizeRequests ->
                 authorizeRequests
-                .requestMatchers("/student/**").hasRole("STUDENT")
                 .requestMatchers("/student/").hasRole("STUDENT")
+                .requestMatchers("/student/**").hasRole("STUDENT")
+                .requestMatchers("/teacher/").hasRole("TEACHER")
                 .requestMatchers("/teacher/**").hasRole("TEACHER")
                 .anyRequest().authenticated()
-            )
-//            .formLogin(formLogin ->
-//                formLogin
-//                    .loginPage("/login")
-//                    .permitAll() 
-//            )
-//            .logout(logout ->
-//                logout
-//                    .permitAll()
-//            )
-       ;
-        http.httpBasic(Customizer.withDefaults());
-        http.csrf(csrf -> csrf.disable());
-
+            );
+        
+        http.httpBasic(Customizer.withDefaults())
+        
+        .formLogin(formLogin ->
+        formLogin
+            .loginPage("/login")
+            .permitAll()
+        )
+        .logout(logout -> 
+        logout
+            .logoutUrl("/logout")
+            .logoutSuccessUrl("/login?logout")
+            .clearAuthentication(true)
+            .deleteCookies("JSESSIONID")
+            .invalidateHttpSession(true)
+        )
+        .sessionManagement(sessionManagement ->
+        sessionManagement
+            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Otras opciones: NEVER, ALWAYS, STATELESS
+        )
+        .csrf(csrf -> csrf.disable())
+        ;
+        
         return http.build();
     }
 }
