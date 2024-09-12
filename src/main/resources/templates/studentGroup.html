@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Group List</title>
+</head>
+<body>
+    <h1>Groups and Courses</h1>
+    
+    <div th:if="${emptyGroupMessage}">
+        <p th:text="${emptyGroupMessage}"></p>
+    </div>
+    
+    <table th:if="${groupList != null and !groupList.isEmpty()}">
+        <thead>
+            <tr>
+                <th>Group Id</th>
+                <th>Course Name</th>
+                <th>Semester</th>
+                <th>Year</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="group : ${groupList}">
+                <td th:text="${group.groupId}">Group Id</td>
+                <td th:text="${group.courseName}">Course Name</td>
+                <td th:text="${group.semester}">Semester</td>
+                <td th:text="${group.year}">Year</td>
+            </tr>
+        </tbody>
+    </table>
+    
+</body>
+</html>
