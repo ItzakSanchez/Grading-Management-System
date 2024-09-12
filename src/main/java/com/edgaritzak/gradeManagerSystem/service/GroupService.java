@@ -13,6 +13,9 @@ public interface GroupService {
 	List<Group>findStudentsGroups(int studentId);
 	List<Group>findStudentsGroupsByTerm(int studentId,  int semester, int year);
 	
+	List<GroupWithCourseDTO>findTeachersGroupWithCourseDTO(int teacherId);
+	List<GroupWithCourseDTO>findStudentsGroupWithCourseDTO(int studentId);
+	
 	List<GroupWithCourseDTO>findTeachersGroupWithCourseDTOByTerm(int teacherId, int semester, int year);
 	List<GroupWithCourseDTO>findStudentsGroupWithCourseDTOByTerm(int studentId, int semester, int year);
 }

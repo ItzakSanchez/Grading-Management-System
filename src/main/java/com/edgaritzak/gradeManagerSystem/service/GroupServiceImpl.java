@@ -71,4 +71,30 @@ public class GroupServiceImpl implements GroupService {
 						e.getYear()))
 				.collect(Collectors.toList());
 	}
+
+	@Override
+	public List<GroupWithCourseDTO> findTeachersGroupWithCourseDTO(int teacherId) {
+		List<Group> groupList = groupRepo.findTeachersGroups(teacherId);
+		return groupList.stream()
+				.map(e -> new GroupWithCourseDTO(
+						e.getId(), 
+						e.getCourse().getName(), 
+						e.getSemester(), 
+						e.getYear()))
+				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<GroupWithCourseDTO> findStudentsGroupWithCourseDTO(int studentId) {
+		List<Group> groupList = groupRepo.findStudentsGroups(studentId);
+		return groupList.stream()
+				.map(e -> new GroupWithCourseDTO(
+						e.getId(), 
+						e.getCourse().getName(), 
+						e.getSemester(), 
+						e.getYear()))
+				.collect(Collectors.toList());
+	}
+	
+	
 }
