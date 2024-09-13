@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+</style>
+<head>
+    <title>Group List</title>
+</head>
+<span>
+    <h1>Welcome <span th:text="${userAttributes['firstName']}"></span>
+			 <span th:text="${userAttributes['lastName']}"></span></h1>
+    
+	<a href="/teacher/userDetails" class="button">
+		<button>View profile information</button>
+	</a>
+	
+    <div th:if="${emptyGroupMessage}">
+        <p th:text="${emptyGroupMessage}"></p>
+    </div>
+    <h2>Your groups</h2> 
+    <table th:if="${groupList != null and !groupList.isEmpty()}">
+        <thead>
+            <tr>
+                <th>Id Group</th>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Semester</th>
+                <th>Year</th>
+                <th>View Details</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="group : ${groupList}">
+                <td th:text="${group.groupId}">groupId</td>
+                <td th:text="${group.courseName}">courseName</td>
+                <td th:text="${group.description}">description</td>
+                <td th:text="${group.semester}">semester</td>
+                <td th:text="${group.year}">year</td>
+				<td><a th:href="@{/teacher/groupDetails(groupId=${group.groupId})}">View details</a></td>
+            </tr>
+        </tbody>
+    </table>
+	<br>
+	<form action="/logout" method="post">
+	        <button type="submit">Logout</button>
+	</form>
+</body>
+</html>

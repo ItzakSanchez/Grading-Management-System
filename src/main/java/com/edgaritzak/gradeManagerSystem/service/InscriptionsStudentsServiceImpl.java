@@ -36,5 +36,8 @@ public class InscriptionsStudentsServiceImpl implements InscriptionsStudentsServ
 	public List<InscriptionsStudents> findInscriptionsStudentsByGroupId(int groupId) {
 		return inscriptionsStudentsRepo.findInscriptionsStudentsByGroupId(groupId);
 	}
-	
+	@Override
+	public List<InscriptionsStudents> findInscriptionsStudentsByStudentId(int studentId) {
+		return inscriptionsStudentsRepo.findInscriptionsStudentsByStudentId(studentId);
+	}
 }
