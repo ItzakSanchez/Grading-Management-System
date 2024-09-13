@@ -1,5 +1,6 @@
 package com.edgaritzak.gradeManagerSystem.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.edgaritzak.gradeManagerSystem.dto.StudentWithScoreDTO;
+import com.edgaritzak.gradeManagerSystem.dto.SystemUserWithRoleIdDTO;
 import com.edgaritzak.gradeManagerSystem.entity.InscriptionsStudents;
 import com.edgaritzak.gradeManagerSystem.entity.SystemUser;
 import com.edgaritzak.gradeManagerSystem.repository.InscriptionsStudentsRepository;
@@ -23,6 +25,11 @@ public class SystemUserServiceImpl implements SystemUserService{
 			InscriptionsStudentsRepository inscriptionsStudentsRepo) {
 		this.systemUserRepo = systemUserRepo;
 		this.inscriptionsStudentsRepo = inscriptionsStudentsRepo;
+	}
+	
+	@Override
+	public SystemUser findByEmail(String email) {
+		return systemUserRepo.findByEmail(email);
 	}
 	
 	@Override
@@ -54,14 +61,18 @@ public class SystemUserServiceImpl implements SystemUserService{
 	//GETS A LIST WITH ALL STUDENTS IN A SPECIFIC GROUP(ID)
 	@Override
 	public List<StudentWithScoreDTO> findStudentsWithScoreByGroup(int groupId) {
+		
 		List<InscriptionsStudents> inscriptionsStudentsList = 
 				inscriptionsStudentsRepo.findInscriptionsStudentsByGroupId(groupId);
+		
+		
 		return inscriptionsStudentsList.stream()
 				.map(e -> new StudentWithScoreDTO(
+						e.getId(),
 						e.getStudent().getId(),
 						e.getStudent().getSystemUser().getFirstName(),
 						e.getStudent().getSystemUser().getLastName(),
-						e.getScore()))
+						(int)e.getScore()))
 				.collect(Collectors.toList());
 	}
 
@@ -70,5 +81,22 @@ public class SystemUserServiceImpl implements SystemUserService{
 		return systemUserRepo.findAll();
 	}
 	
-	
+	//GETS A LIST WITH ALL STUDENTS-DTO
+	public List<SystemUserWithRoleIdDTO> findAllStudentsDTO() {
+		List<SystemUserWithRoleIdDTO> onlyStudents = new ArrayList<>();
+		List<SystemUser> allUsers = systemUserRepo.findAll();
+		for(SystemUser user: allUsers) {
+			if(user.getStudent()!=null) {
+				onlyStudents.add(new SystemUserWithRoleIdDTO(
+						user.getId(),
+						user.getFirstName(),
+						user.getLastName(),
+						user.getEmail(),
+						user.getPassword(),
+						user.getRole(),
+						user.getStudent().getId()));
+			}
+		}
+		return onlyStudents;
+	}
 }

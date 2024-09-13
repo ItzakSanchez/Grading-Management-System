@@ -2,25 +2,37 @@ package com.edgaritzak.gradeManagerSystem.dto;
 
 public class StudentWithScoreDTO {
 
-	private int IdStudent;
+	private int idInscription;
+	private int idStudent;
 	private String firstName;
 	private String lastName;
-	private double score;
+	private int score;
 	
-	public StudentWithScoreDTO(int idStudent, String firstName, String lastName, double score) {
-		IdStudent = idStudent;
+	public StudentWithScoreDTO(int idInscription, int idStudent, String firstName, String lastName, int score) {
+		this.idInscription = idInscription;
+		this.idStudent = idStudent;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.score = score;
 	}
 	
 	
+	public int getIdInscription() {
+		return idInscription;
+	}
+
+
+	public void setIdInscription(int idInscription) {
+		this.idInscription = idInscription;
+	}
+
+
 	public int getIdStudent() {
-		return IdStudent;
+		return idStudent;
 	}
 
 	public void setIdStudent(int idStudent) {
-		IdStudent = idStudent;
+		this.idStudent = idStudent;
 	}
 
 	public String getFirstName() {
@@ -39,17 +51,17 @@ public class StudentWithScoreDTO {
 		this.lastName = lastName;
 	}
 
-	public double getScore() {
+	public int getScore() {
 		return score;
 	}
 
-	public void setScore(double score) {
+	public void setScore(int score) {
 		this.score = score;
 	}
 
 	@Override
 	public String toString() {
-		return "StudentWithScoreDTO [IdStudent=" + IdStudent + ", firstName=" + firstName + ", lastName=" + lastName
+		return "StudentWithScoreDTO [IdStudent=" + idStudent + ", firstName=" + firstName + ", lastName=" + lastName
 				+ ", score=" + score + "]";
 	}
 }

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+</style>
+<head>
+    <title>Edit Student</title>
+</head>
+<span>
+    <h1>Edit Student</h1>
+	<a href="/admin" class="button">
+		<button>Return to home page</button>
+	</a>
+	
+	
+    <h2>Student list</h2> 
+	<table>
+	        <thead>
+	            <tr>
+	                <th>System Id</th>
+	                <th>First Name</th>
+	                <th>Last Name</th>
+	                <th>Email</th>
+	                <th>Password</th>
+	                <th>Role</th>
+	                <th>Student Id</th>
+	            </tr>
+	        </thead>
+	        <tbody>
+	            <tr>
+	                <td th:text="${student.id}">Id</td>
+					<input type="hidden" name="id" th:value="${student.id}">
+	                <td><input name="firstName" th:value="${student.firstName}"></td>
+	                <td><input name="lastName" th:value="${student.lastName}"></td>
+	                <td><input name="email" th:value="${student.email}"></td>
+	                <td><input name="password" th:value="${student.password}"></td>
+	                <td th:text="${student.role}">role</td>
+	                <td th:text="${student.roleId}">roleId</td>
+		    	</tr>
+	        </tbody>
+	    </table>
+	<br>
+	<form action="/logout" method="post">
+	        <button type="submit">Logout</button>
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

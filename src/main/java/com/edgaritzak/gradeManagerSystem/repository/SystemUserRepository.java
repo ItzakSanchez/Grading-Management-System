@@ -35,4 +35,7 @@ public interface SystemUserRepository extends JpaRepository<SystemUser, Integer>
 	@Query("SELECT SU FROM SystemUser as SU"
 	+" WHERE SU.id = :systemUserId")
 	Optional<SystemUser> findUserById(@Param("systemUserId")int systemUserId);
+	
+	SystemUser findByEmail(String email);
+	
 }
