@@ -15,4 +15,6 @@ public interface SystemUserService {
 	List<StudentWithScoreDTO> findStudentsWithScoreByGroup(int groupId);
 	
 	List<SystemUser> findAll();
+	
+	SystemUser findByEmail(String email);
 }

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+</style>
+<head>
+    <title>All students</title>
+</head>
+<span>
+    <h1>All students</h1>
+	<a href="/admin" class="button">
+		<button>Return to home page</button>
+	</a>
+	
+	
+    <div th:if="${emptyGroupMessage}">
+        <p th:text="${emptyGroupMessage}"></p>
+    </div>
+    <h2>Student list</h2> 
+    <table th:if="${studentList != null and !studentList.isEmpty()}">
+        <thead>
+            <tr>
+                <th>System Id</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Password</th>
+                <th>Role</th>
+                <th>Student Id</th>
+                <th>Update</th>
+                <th>Delete</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="student : ${studentList}">
+                <td th:text="${student.id}">Id</td>
+                <td th:text="${student.firstName}">firstName</td>
+                <td th:text="${student.lastName}">lastName</td>
+                <td th:text="${student.email}">email</td>
+                <td th:text="${student.password}">password</td>
+                <td th:text="${student.role}">role</td>
+                <td th:text="${student.roleId}">roleId</td>
+                <td>
+					<form th:action="@{/admin/editStudent/{id}(id=${student.roleId})}" method="get">
+                       <button type="submit">Edit</button>
+                	</form>
+				</td>
+                <td>
+					<form th:action="@{/admin/editStudent/{id}(id=${student.roleId})}" method="get">
+                   		<button type="submit">Edit</button>
+            		</form>
+				</td>
+	            </tr>
+        </tbody>
+    </table>
+	<br>
+	<form action="/logout" method="post">
+	        <button type="submit">Logout</button>
+	</form>
+</body>
+</html>

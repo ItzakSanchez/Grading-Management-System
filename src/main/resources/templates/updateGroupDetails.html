@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+</style>
+<head>
+    <title>Group List</title>
+</head>
+<span>
+    <h1>Update Group Details - <span th:text="${courseAttributes['courseName']}"></span> </h1>
+	
+	<p>groupId: <span th:text="${courseAttributes['groupId']}"></span></p>
+	<p>Description: <span th:text="${courseAttributes['description']}"></span></p>
+	<p>Semester: <span th:text="${courseAttributes['semester']}"></span></p>
+	<p>Year: <span th:text="${courseAttributes['year']}"></span></p>
+	
+	<a th:href="@{/teacher/groupDetails(groupId=${courseAttributes['groupId']})}">
+		<button>Cancel changes and return</button>
+	</a>
+    <div th:if="${emptyGroupMessage}">
+        <p th:text="${emptyGroupMessage}"></p>
+    </div>
+    <h2>Your groups</h2> 
+	<form action="#" th:action="@{/teacher/update}" method="post">
+    <table th:if="${studentList != null and !studentList.isEmpty()}">
+        <thead>
+            <tr>
+                <th>Id Student</th>
+                <th>First Name</th>
+                <th>lastName</th>
+                <th>Score</th>
+            </tr>
+        </thead>
+			
+			<input type="hidden" name="groupId" th:value="${courseAttributes['groupId']}">
+	        <tbody>
+	            <tr th:each="student, iter :${studentList}">
+	                <td th:text="${student.idStudent}">Id Student</td>
+	                <td th:text="${student.firstName}">firstName</td>
+	                <td th:text="${student.lastName}">lastName</td>
+					<td><input type="number" th:name="'score-'+${student.idInscription}" th:value="${student.score}" required min="0" max="100" step="1"/></td>
+					<input type="hidden" th:name="'idInscription-'+${student.idInscription}" th:value="${student.idInscription}" />
+		        </tr>
+					
+	        </tbody>
+			<button type="submit">Update Scores</button>
+    </table>
+	</form>
+	<br>
+	<form action="/logout" method="post">
+	        <button type="submit">Logout</button>
+	</form>
+</body>
+</html>
