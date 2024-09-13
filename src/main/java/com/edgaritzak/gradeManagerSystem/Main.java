@@ -9,6 +9,7 @@ import com.edgaritzak.gradeManagerSystem.service.GroupServiceImpl;
 import com.edgaritzak.gradeManagerSystem.service.InscriptionsStudentsServiceImpl;
 import com.edgaritzak.gradeManagerSystem.service.StudentServiceImpl;
 import com.edgaritzak.gradeManagerSystem.service.SystemUserServiceImpl;
+import com.edgaritzak.gradeManagerSystem.service.UserSessionServiceImpl;
 
 @SpringBootApplication
 public class Main {
@@ -21,8 +22,11 @@ public class Main {
 	@Bean
 	public CommandLineRunner comandLineRunner(SystemUserServiceImpl systemUserServiceImpl, 
 			StudentServiceImpl studentServiceImpl, GroupServiceImpl groupServiceImpl,
-			InscriptionsStudentsServiceImpl inscriptionsStudentsServiceImpl){
+			InscriptionsStudentsServiceImpl inscriptionsStudentsServiceImpl,
+			UserSessionServiceImpl sessionServiceImpl){
 		return runner -> {
+			
+			System.out.println(sessionServiceImpl.findUserWithRoleDTOByEmail("judy.hopps@example.com"));
 			//SYSTEM USER 
 //			systemUserServiceImpl.findAll().forEach(x-> System.out.println(x));
 //			System.out.println("------------------------------------------------------------------------\n------------------------------------------------------------------------");

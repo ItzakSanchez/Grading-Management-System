@@ -4,13 +4,15 @@ public class GroupWithCourseDTO {
 	
 	private int groupId;
 	private String courseName;
+	private String description;
 	private int semester;
 	private int year;
 	
-	public GroupWithCourseDTO(int groupId, String courseName, int semester, int year) {
+	public GroupWithCourseDTO(int groupId, String courseName, String description, int semester, int year) {
 		super();
 		this.groupId = groupId;
 		this.courseName = courseName;
+		this.description = description;
 		this.semester = semester;
 		this.year = year;
 	}
@@ -45,6 +47,14 @@ public class GroupWithCourseDTO {
 
 	public void setYear(int year) {
 		this.year = year;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override

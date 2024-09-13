@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+</style>
+<head>
+    <title>User Detalis</title>
+</head>
+    <h1>User Detalis - <span th:text="${userAttributes['firstName']}"></span>
+			 <span th:text="${userAttributes['lastName']}"></span></h1>
+    
+	<a th:href="${userAttributes['role'] == 'STUDENT' ? '/student' 
+			                     : userAttributes['role'] == 'TEACHER' ? '/teacher' 
+			                     : userAttributes['role'] == 'ADMIN' ? '/admin' 
+			                     : '/defaultPage'}" class="button">
+		<button>Return to home page</button>
+	</a>
+	</br>
+	<br>
+	</br>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+				<td>System User Id</td>
+				<td th:text="${userAttributes['systemUserId']}">systemUserId</td>
+            </tr>
+			<tr>
+				<td>First Name</td>
+				<td th:text="${userAttributes['firstName']}">firstName</td>
+           </tr>
+		   <tr>
+		   	<td>Last Name</td>
+		   	<td th:text="${userAttributes['lastName']}">lastName</td>
+		   </tr>
+		   <tr>
+		   	<td>Email</td>
+		   	<td th:text="${userAttributes['email']}">email</td>
+		   </tr>
+		   <tr>
+		   	<td>Password</td>
+		   	<td th:text="${userAttributes['password']}">password</td>
+		   </tr>
+		   <tr>
+		   	<td>Role</td>
+		   	<td th:text="${userAttributes['role']}">role</td>
+		   </tr>
+		   <tr>
+		   	<td>Role Id</td>
+		   	<td th:text="${userAttributes['roleId']}">roleId</td>
+		   </tr>
+		   		
+        </tbody>
+    </table>
+	<br>
+	<form action="/logout" method="post">
+	        <button type="submit">Logout</button>
+	</form>
+</body>
+</html>

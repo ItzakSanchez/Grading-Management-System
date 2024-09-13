@@ -26,6 +26,11 @@ public class SystemUserServiceImpl implements SystemUserService{
 	}
 	
 	@Override
+	public SystemUser findByEmail(String email) {
+		return systemUserRepo.findByEmail(email);
+	}
+	
+	@Override
 	public List<SystemUser> findStudentsByGroup(int groupId) {
 		return systemUserRepo.findStudentsByGroup(groupId);
 	}
