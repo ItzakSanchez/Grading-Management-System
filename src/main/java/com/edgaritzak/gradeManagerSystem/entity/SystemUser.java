@@ -35,4 +35,7 @@ public class SystemUser {
 	
 	@OneToOne(mappedBy = "systemUser")
     private Teacher teacher;
+
+	@OneToOne(mappedBy = "systemUser")
+    private Admin admin;
 }

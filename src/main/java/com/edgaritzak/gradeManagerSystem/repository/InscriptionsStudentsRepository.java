@@ -19,4 +19,12 @@ public interface InscriptionsStudentsRepository extends JpaRepository<Inscriptio
 	@Modifying
 	@Query("Update InscriptionsStudents I SET I.score = :score where I.id = :idInscription")
 	void updateScore(@Param("idInscription")int idInscription,@Param("score") double score);
+	
+	
+	@Query("Select I from InscriptionsStudents AS I WHERE I.student.id = :studentId")
+	List<InscriptionsStudents> findInscriptionsStudentsByStudentId(@Param("studentId")int studentId);
+
+	@Modifying
+	@Query("Delete from InscriptionsStudents AS I WHERE I.student.id = :studentId")
+	void deleteByStudentId(@Param("studentId")int id);
 }

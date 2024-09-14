@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+</style>
+<head>
+    <title>New Student</title>
+</head>
+    <h1>New Student</h1>
+	<a href="/admin" class="button">
+		<button>Return to home page</button>
+	</a>
+	
+	
+    <h2>New Student</h2> 
+	<table>
+	        <thead>
+	            <tr>
+	                <th>First Name</th>
+	                <th>Last Name</th>
+	                <th>Email</th>
+	                <th>Password</th>
+	            </tr>
+	        </thead>
+			<form action="#" th:action="@{createStudent/save}" method="post">
+	        <tbody>
+	            <tr>
+	                <td><input name="firstName" required></td>
+	                <td><input name="lastName" required></td>
+	                <td><input name="email" required></td>
+	                <td><input name="password" required></td>
+		    	</tr>
+	        </tbody>
+	    </table>
+	<br>
+	<div>
+	     <button type="submit">Create new Student</button>
+	 </div>
+	 </form>
+	 <br/><br/>
+	<form action="/logout" method="post">
+	        <button type="submit">Logout</button>
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

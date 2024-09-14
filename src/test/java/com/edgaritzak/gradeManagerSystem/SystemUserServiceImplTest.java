@@ -20,6 +20,11 @@ public class SystemUserServiceImplTest {
 		catch(Exception e) {org.junit.jupiter.api.Assertions.fail("Exception thrown during safeOperation: " + e.getMessage());}
 	}
 	@Test 
+	void test_SystemUser_findByEmail() {
+		try {systemUserImpl.findByEmail("alice.johnson@example.com");}
+		catch(Exception e) {org.junit.jupiter.api.Assertions.fail("Exception thrown during safeOperation: " + e.getMessage());}
+	}
+	@Test 
 	void test_SystemUser_findTeacherById() {
 		try {systemUserImpl.findTeacherById(1);}
 		catch(Exception e) {org.junit.jupiter.api.Assertions.fail("Exception thrown during safeOperation: " + e.getMessage());}

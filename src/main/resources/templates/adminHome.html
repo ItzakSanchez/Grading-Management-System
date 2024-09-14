@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+</style>
+<head>
+    <title>Group List</title>
+</head>
+<span>
+    <h1>Welcome <span th:text="${userAttributes['firstName']}"></span>
+			 <span th:text="${userAttributes['lastName']}"></span></h1>
+    
+	<a href="/admin/userDetails" class="button">
+		<button>View profile information</button>
+	</a>
+	<br/><br/><br/>
+	<table>
+		<tr>
+			<th>Options</th>
+		</tr>
+		<tr>
+			<td>
+				<a href="/admin/studentList" class="button">
+					<button>View all Students</button>
+				</a>
+				<a href="/admin/teacherList" class="button">
+					<button>View all Teachers</button>
+				</a>
+				<a href="/admin/groupList" class="button">
+					<button>View all Groups</button>
+				</a>
+				<a href="/admin/courseList" class="button">
+					<button>View all Courses</button>
+				</a>								
+			</td>
+		</tr>
+	</table>
+
+	
+	<br/><br/><br/>
+	<form action="/logout" method="post">
+	        <button type="submit">Logout</button>
+	</form>
+</body>
+</html>
