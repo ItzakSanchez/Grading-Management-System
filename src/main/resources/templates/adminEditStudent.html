@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+</style>
+<head>
+    <title>Edit Student</title>
+</head>
+    <h1>Edit Student</h1>
+	<a href="/admin" class="button">
+		<button>Return to home page</button>
+	</a>
+	
+	
+    <h2>Edit Student</h2> 
+	<table>
+	        <thead>
+	            <tr>
+	                <th>System Id</th>
+	                <th>First Name</th>
+	                <th>Last Name</th>
+	                <th>Email</th>
+	                <th>Password</th>
+	                <th>Role</th>
+	                <th>Student Id</th>
+	            </tr>
+	        </thead>
+			<form action="#" th:action="@{editStudent/updateStudent}" method="post">
+	        <tbody>
+	            <tr>
+	                <td th:text="${student.id}">Id</td>
+					<input type="hidden" name="id" th:value="${student.id}">
+	                <td><input name="firstName" th:value="${student.firstName}" required></td>
+	                <td><input name="lastName" th:value="${student.lastName}" required></td>
+	                <td><input name="email" th:value="${student.email}" required></td>
+	                <td><input name="password" th:value="${student.password}" required></td>
+	                <td th:text="${student.role}">role</td>
+	                <td th:text="${student.roleId}">roleId</td>
+		    	</tr>
+	        </tbody>
+	    </table>
+	<br>
+
+	<div>
+	     <button type="submit">Save changes</button>
+	 </div>
+	 </form>
+	 <a href="/admin/studentList" class="button">
+		<button>Cancel changes</button>
+	</a>
+	 <br/><br/>
+	<form action="/logout" method="post">
+	        <button type="submit">Logout</button>
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

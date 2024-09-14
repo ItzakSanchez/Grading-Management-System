@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<style>
+	table, th, td {
+	  border: 1px solid black;
+	  border-collapse: collapse;
+	}
+</style>
+<head>
+    <title>All Groups</title>
+</head>
+<span>
+    <h1>All Groups</h1>
+	<a href="/admin" class="button">
+		<button>Return to home page</button>
+	</a>
+	<br/><br/>
+	
+    <h2>Group list</h2> 
+    <table>
+        <thead>
+            <tr>
+                <th>groupId</th>
+                <th>courseName</th>
+                <th>description</th>
+                <th>semester</th>
+                <th>year</th>
+                <th>teacher</th>
+   
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="group : ${groupList}">
+                <td th:text="${group.groupId}">groupId</td>
+                <td th:text="${group.courseName}">courseName</td>
+                <td th:text="${group.description}">description</td>
+                <td th:text="${group.semester}">semester</td>
+                <td th:text="${group.year}">year</td>
+                <td th:text="${group.teacher}">teacher</td>
+	        </tr>
+        </tbody>
+    </table>
+	<br>
+	<form action="/logout" method="post">
+	        <button type="submit">Logout</button>
+	</form>
+</body>
+</html>
