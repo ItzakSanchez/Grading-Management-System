@@ -24,7 +24,6 @@ public class SecurityConfig {
 	
 	@Autowired
 	private SystemUserServiceImpl systemUserServiceImpl;
-	
     private final InMemoryUserDetailsManager userDetailsManager;
 
     public SecurityConfig() {
@@ -35,7 +34,7 @@ public class SecurityConfig {
     public InMemoryUserDetailsManager userDetailsManager() {
         return userDetailsManager;
     }
-    
+    //ADD USERS 
     @PostConstruct
     public void initializeUsers() {
         updateUsers();
@@ -53,7 +52,7 @@ public class SecurityConfig {
                 
         userList.forEach((user) -> userDetailsManager.createUser(user));
     }
-    
+    //REMOVE USERS
     public void removeUsers() {
         List<SystemUser> userList = systemUserServiceImpl.findAll();
         userList.forEach((user) -> userDetailsManager.deleteUser(user.getEmail()));
@@ -71,32 +70,24 @@ public class SecurityConfig {
                 .requestMatchers("/teacher/**").hasRole("TEACHER")
                 .requestMatchers("/admin/").hasRole("ADMIN")
                 .requestMatchers("/admin/**").hasRole("ADMIN")
-                .anyRequest().authenticated()
-            );
+                .anyRequest().authenticated());
         
         http.httpBasic(Customizer.withDefaults())
-        
         .formLogin(formLogin ->
         formLogin
             .loginPage("/login")
             .defaultSuccessUrl("/auth", true)
-            .permitAll()
-        )
-        .logout(logout -> 
-        logout
-            .logoutUrl("/logout")
-            .logoutSuccessUrl("/login?logout")
-            .clearAuthentication(true)
-            .deleteCookies("JSESSIONID")
-            .invalidateHttpSession(true)
-            .permitAll()
-        )
-        .sessionManagement(sessionManagement ->
-        sessionManagement
-            .sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED) // Otras opciones: NEVER, ALWAYS, STATELESS
-        )
-        .csrf(csrf -> csrf.disable())
-        ;
+            .permitAll())
+        	.logout(logout -> 
+			    logout
+			        .logoutUrl("/logout")
+			        .logoutSuccessUrl("/login?logout")
+			        .clearAuthentication(true)
+			        .deleteCookies("JSESSIONID")
+			        .invalidateHttpSession(true)
+			        .permitAll())
+			    .sessionManagement(sessionManagement ->sessionManagement.sessionCreationPolicy(SessionCreationPolicy.IF_REQUIRED))
+			    .csrf(csrf -> csrf.disable());
         
         return http.build();
     }
